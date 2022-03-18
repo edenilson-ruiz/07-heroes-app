@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { getHeroesByName } from "../../selectors/getHeroesByName";
@@ -9,7 +9,7 @@ export const SearchScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { q = '' } = queryString.parse(location.search);
+  const { q = "" } = queryString.parse(location.search);
 
   const initialForm = {
     searchText: q,
@@ -29,45 +29,50 @@ export const SearchScreen = () => {
 
   return (
     <div>
-      <h1>Search</h1>
-      <hr />
+      <div className="">
+        <div className="flex flex-row mt-5 mr-5 mb-5 w-full">
+          <div>
+            <p className="flex font-bold ml-8 mr-5 mt-2">Search Form</p>
+          </div>
 
-      <div className="row">
-        <div className="col-5">
-          <h4>Search Form</h4>
-          <hr />
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="Search a hero"
-              className="form-control"
-              name="searchText"
-              autoComplete="off"
-              value={searchText}
-              onChange={handleInputChange}
-            />
-
-            <button type="submit" className="btn btn-outline-primary mt-1">
+          <div>
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="Search a hero"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                name="searchText"
+                autoComplete="off"
+                value={searchText}
+                onChange={handleInputChange}
+              />
+            </form>
+          </div>
+          <div className="">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2.5 ml-5 rounded"
+              onClick={handleSearch}
+            >
               Search
             </button>
-          </form>
+          </div>
         </div>
-        <div className="col-7">
-          <h4>Resultados</h4>
-          <hr />
-          {
-            (q === '')
-              ? <div className="alert alert-info">Search a hero</div>
-              : ( heroesFiltered.length === 0 ) && <div className="alert alert-danger">No results for: <strong>{ q }</strong></div>
-          }
-          <div className="d-flex p-2">
-            <div className="card-group">
-              <div className="row row-cols-1 row-cols-md-2 animate__animated animate__fadeIn">
-                {heroesFiltered.map((hero) => (
-                  <HeroCard key={hero.id} {...hero} />
-                ))}
+        <div className="col-span-3">
+          <h4 className="text-xl font-bold mt-5 mb-2 ml-8">Resultados</h4>
+          {q === "" ? (
+            <div className="p-2.5 bg-cyan-300 text-lg ml-8 w-4/12 rounded">Search a hero</div>
+          ) : (
+            heroesFiltered.length === 0 && (
+              <div className="p-2.5 bg-red-300 text-lg ml-8 w-4/12 rounded">
+                No results for: <strong>{q}</strong>
               </div>
-            </div>
+            )
+          )}
+          <div className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-6 gap-4 animate__animated animate__fadeIn">
+            {heroesFiltered.map((hero) => (
+              <HeroCard key={hero.id} {...hero} />
+            ))}
           </div>
         </div>
       </div>

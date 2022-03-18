@@ -11,23 +11,28 @@ export const HeroCard = ({
 }) => {
   const imagePath = `/assets/${id}.jpg`;
 
-  const chars = characters.split(",");
-
   return (
-    <div className="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
-      <img className="w-full h-100 rounded-t-lg rounded-tr-lg" src={imagePath} alt="product" />
-      <div className="px-6 py-4">
-        <h4 className="mb-3 text-xl font-semibold tracking-tight text-gray-800">
-          {superhero}
-        </h4>
-        <h3>{alter_ego}</h3>
-      </div>
-      <div className="px-6 py-4">
-        <p className="leading-normal text-gray-700">
+    <>
+      <div className="col-span-1 flex flex-col bg-white border-1 p-2 rounded shadow">
+        <img
+          src={imagePath}
+          alt={superhero}
+          className="w-full h-100 rounded-t"
+        />
+        <h2 className="mt-2 mb-2 font-bold text-2xl">{superhero}</h2>
+
+        <div className="mb-4 flex flex-wrap">
+          <span className="mr-2">{alter_ego}</span>
+        </div>
+        <p className="text-md text-justify">
           {alter_ego !== characters && <span>{characters}</span>}
         </p>
+        <div className="flex flex-wrap mt-auto pt-3 text-sm">
+          <p className="mr-2 mb-2 text-cyan-700 bg-blue w-10 h-10">
+            <Link to={`/hero/${id}`}>More...</Link>
+          </p>
+        </div>
       </div>
-      <div className="px-6 py-4">Read more...</div>
-    </div>
+    </>
   );
 };

@@ -5,7 +5,7 @@ export const DcScreen = () => {
   const publisher = "DC Comics";
   return (
     <div>
-      <h1 className="text-2xl font-bold mt-5 mb-5">DC Screen</h1>    
+      <h1 className="text-2xl font-bold mt-5 mb-5 ml-10">DC Screen</h1>    
       <HeroList publisher={publisher} />
     </div>
   );

@@ -7,7 +7,7 @@ export const MarvelScreen = () => {
 
   return (
     <div>
-        <h1 className="text-2xl font-bold mt-5 mb-5">Marvel Screen</h1>    
+        <h1 className="text-2xl font-bold mt-5 mb-5 ml-10">Marvel Screen</h1>    
         <HeroList publisher={publisher} />
     </div>
   );
