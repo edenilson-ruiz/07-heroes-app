@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export const HeroCard = ({
   id,
@@ -9,35 +9,25 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-
   const imagePath = `/assets/${id}.jpg`;
 
+  const chars = characters.split(",");
+
   return (
-    <div className="col">
-      <div className="card h-100">
-        <img
-          src={imagePath}
-          className="card-img-top"
-          alt={superhero}
-        />
-        <div className="card-body">
-          <h5 className="card-title">{superhero}</h5>
-          <p className="card-text">{alter_ego}</p>
-          <p>
-            {
-              ( alter_ego !== characters ) 
-                && <span>{characters}</span>
-            }
-          </p>
-          <p className="card-text">
-            {first_appearance}
-          </p>
-          <Link to={`/hero/${id}`}>Más...</Link>
-        </div>
-        <div className="card-footer">
-          <small className="text-muted">{publisher}</small>
-        </div>
+    <div className="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
+      <img className="w-full h-100 rounded-t-lg rounded-tr-lg" src={imagePath} alt="product" />
+      <div className="px-6 py-4">
+        <h4 className="mb-3 text-xl font-semibold tracking-tight text-gray-800">
+          {superhero}
+        </h4>
+        <h3>{alter_ego}</h3>
       </div>
+      <div className="px-6 py-4">
+        <p className="leading-normal text-gray-700">
+          {alter_ego !== characters && <span>{characters}</span>}
+        </p>
+      </div>
+      <div className="px-6 py-4">Read more...</div>
     </div>
   );
 };
